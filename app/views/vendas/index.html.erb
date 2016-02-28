@@ -1,0 +1,39 @@
+<div class="page-header">
+  <%= link_to new_venda_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New Venda
+  <% end %>
+  <h1>Listing vendas</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Cliente</th>
+            <th>Descricao</th>
+            <th>Data faturamento</th>
+            <th>Data cobranca</th>
+            <th>Pago</th>
+            <th>Valor</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @vendas) do |venda| %>
+            <td><%= venda.cliente %></td>
+            <td><%= venda.descricao %></td>
+            <td><%= venda.data_faturamento %></td>
+            <td><%= venda.data_cobranca %></td>
+            <td><%= venda.pago %></td>
+            <td><%= venda.valor %></td>
+            <td><%= link_to 'Show', venda %></td>
+        <td><%= link_to 'Edit', edit_venda_path(venda) %></td>
+        <td><%= link_to 'Destroy', venda, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

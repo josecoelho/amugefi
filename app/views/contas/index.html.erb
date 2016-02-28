@@ -1,0 +1,39 @@
+<div class="page-header">
+  <%= link_to new_conta_path, class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-plus"></span>
+    New conta
+  <% end %>
+  <h1>Listing conta</h1>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+            <th>Nome</th>
+            <th>Agencia</th>
+            <th>Conta corrente</th>
+            <th>Boleto carteira</th>
+            <th>Boleto nome cedente</th>
+            <th>Boleto documento cedente</th>
+            <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= content_tag_for(:tr, @conta) do |conta| %>
+            <td><%= conta.nome %></td>
+            <td><%= conta.agencia %></td>
+            <td><%= conta.conta_corrente %></td>
+            <td><%= conta.boleto_carteira %></td>
+            <td><%= conta.boleto_nome_cedente %></td>
+            <td><%= conta.boleto_documento_cedente %></td>
+            <td><%= link_to 'Show', conta %></td>
+        <td><%= link_to 'Edit', edit_conta_path(conta) %></td>
+        <td><%= link_to 'Destroy', conta, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tbody>
+  </table>
+</div>
