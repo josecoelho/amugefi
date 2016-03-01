@@ -1,23 +1,21 @@
 <div class="page-header">
   <%= link_to new_cliente_path, class: 'btn btn-primary' do %>
     <span class="glyphicon glyphicon-plus"></span>
-    New Cliente
+    Novo Cliente
   <% end %>
-  <h1>Listing clientes</h1>
+  <h1>Clientes</h1>
 </div>
 
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
-            <th>Nome</th>
-            <th>Nome fantasia</th>
-            <th>Cnpj</th>
-            <th>Endereco</th>
-            <th>Email</th>
-            <th></th>
-        <th></th>
-        <th></th>
+            <th><%= sort_link(@q, :nome) %></th>
+            <th><%= sort_link(@q, :nome_fantasia) %></th>
+            <th><%= sort_link(@q, :cnpj) %></th>
+            <th><%= sort_link(@q, :endereco) %></th>
+            <th><%= sort_link(@q, :email) %></th>
+            <th>Ações</th>
       </tr>
     </thead>
 
@@ -28,9 +26,17 @@
             <td><%= cliente.cnpj %></td>
             <td><%= cliente.endereco %></td>
             <td><%= cliente.email %></td>
-            <td><%= link_to 'Show', cliente %></td>
-        <td><%= link_to 'Edit', edit_cliente_path(cliente) %></td>
-        <td><%= link_to 'Destroy', cliente, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td>
+          <%= link_to cliente do %>
+            <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+          <% end %>
+          <%= link_to edit_cliente_path(cliente) do %>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+          <% end %>
+          <%= link_to cliente, method: :delete, data: { confirm: 'Tem certeza?' } do %>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          <% end %>
+        </td>
       <% end %>
     </tbody>
   </table>
