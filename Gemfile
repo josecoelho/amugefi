@@ -39,6 +39,9 @@ gem 'ransack'
 # simple way to create forms
 gem 'simple_form'
 
+# usando markdown em views...
+gem 'rdiscount'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
