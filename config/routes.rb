@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   resources :servicos
-  resources :cachorros
   devise_for :usuarios
   root to: "home#index"
 
