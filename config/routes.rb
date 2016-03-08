@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
 
+  resources :servicos
   resources :cachorros
   devise_for :usuarios
   root to: "home#index"
 
   resources :clientes
-  resources :vendas
+
+  resources :vendas do
+    member do
+      get :boleto
+    end
+  end
+
   resources :contas
 
 

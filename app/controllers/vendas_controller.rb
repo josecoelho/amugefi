@@ -1,5 +1,6 @@
 class VendasController < ApplicationController
-  before_action :set_venda, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_usuario!
+  before_action :set_venda, only: [:show, :edit, :update, :destroy, :boleto]
 
   # GET /vendas
   def index
@@ -38,19 +39,32 @@ class VendasController < ApplicationController
       render :edit
     end
   end
+
   # DELETE /vendas/1
   def destroy
     @venda.destroy
     redirect_to vendas_url, notice: 'Venda was successfully destroyed.'
   end
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_venda
-      @venda = Venda.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def venda_params
-      params.require(:venda).permit(:cliente_id, :descricao, :data_faturamento, :data_cobranca, :pago, :valor)
-    end
+  # GET /vendas/1/boleto
+  def boleto
+    boleto = @venda.gerar_boleto
+
+    send_data boleto.to(:pdf), :filename => @venda.nome_arquivo_boleto
+  end
+
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_venda
+    @venda = Venda.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def venda_params
+    params.require(:venda).permit(
+      :conta_id, :cliente_id, :descricao, :data_faturamento,
+      :data_cobranca, :pago, :valor
+    )
+  end
 end

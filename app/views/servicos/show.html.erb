@@ -1,0 +1,20 @@
+<div class="page-header">
+  <%= link_to servicos_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Voltar
+  <% end %>
+  <%= link_to edit_servico_path(@servico), class: 'btn btn-primary' do %>
+    <span class="glyphicon glyphicon-pencil"></span>
+    Editar
+  <% end %>
+  <h1>Mostrar servico</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Descricao:</dt>
+  <dd><%= @servico.descricao %></dd>
+
+  <dt>Valor:</dt>
+  <dd><%= @servico.valor %></dd>
+
+</dl>

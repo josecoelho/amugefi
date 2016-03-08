@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228104947) do
+ActiveRecord::Schema.define(version: 20160308051536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20160228104947) do
     t.string   "boleto_documento_cedente"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "boleto_variacao"
+    t.string   "boleto_convenio"
+  end
+
+  create_table "servicos", force: :cascade do |t|
+    t.string   "descricao"
+    t.decimal  "valor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "usuarios", force: :cascade do |t|
@@ -64,9 +73,12 @@ ActiveRecord::Schema.define(version: 20160228104947) do
     t.decimal  "valor"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "conta_id"
   end
 
   add_index "vendas", ["cliente_id"], name: "index_vendas_on_cliente_id", using: :btree
+  add_index "vendas", ["conta_id"], name: "index_vendas_on_conta_id", using: :btree
 
   add_foreign_key "vendas", "clientes"
+  add_foreign_key "vendas", "contas"
 end

@@ -1,4 +1,5 @@
 class ContasController < ApplicationController
+  before_action :authenticate_usuario!
   before_action :set_conta, only: [:show, :edit, :update, :destroy]
 
   # GET /contas
@@ -51,6 +52,10 @@ class ContasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def conta_params
-      params.require(:conta).permit(:nome, :agencia, :conta_corrente, :boleto_carteira, :boleto_nome_cedente, :boleto_documento_cedente)
+      params.require(:conta).permit(
+        :nome, :agencia, :conta_corrente, :boleto_carteira,
+        :boleto_nome_cedente, :boleto_documento_cedente,
+        :boleto_variacao, :boleto_convenio
+      )
     end
 end
